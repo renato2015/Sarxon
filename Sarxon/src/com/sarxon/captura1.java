@@ -60,6 +60,10 @@ public class captura1 extends JFrame implements Runnable, WebcamListener, Window
         {
             DSEnvironment.setDLLPath(dll.getAbsolutePath());
         }
+
+
+//	Webcam.setDriver(new GStreamerDriver());
+
     }
 
     private static final long serialVersionUID = 1L;
@@ -88,7 +92,6 @@ public class captura1 extends JFrame implements Runnable, WebcamListener, Window
             {
                 panel.start();
             }
-
         });
 
         btnControleImagem.addActionListener(new ActionListener()
@@ -98,7 +101,6 @@ public class captura1 extends JFrame implements Runnable, WebcamListener, Window
             {
                 abrirControleImagem(paramDispositivo);
             }
-
         });
 
         btnCapturar.setText("Capturar");
@@ -131,17 +133,15 @@ public class captura1 extends JFrame implements Runnable, WebcamListener, Window
                 try
                 {
                     webcam.close();
-                    File file = new File("output.avi" + System.currentTimeMillis());
+                    File file = new File("output.ts" + System.currentTimeMillis());
 
                     IMediaWriter writer = ToolFactory.makeWriter(file.getName());
                     Dimension size = com.github.sarxos.webcam.WebcamResolution.VGA.getSize();
-
 
                     webcam = picker.getSelectedWebcam();
                     webcam.setViewSize(size);
                     webcam.open(true);
 //                    writer.addVideoStream(0, 0, size.width, size.height);
-
                     panel = new WebcamPanel(webcam, false);
                     panel.setFPSDisplayed(true);
                     panel.start();
